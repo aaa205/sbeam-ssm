@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ProductSpecificationMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.ProductSpecification">
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="os_id" jdbcType="INTEGER" property="osId" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
+    <result column="gpu" jdbcType="VARCHAR" property="gpu" />
+    <result column="ram" jdbcType="VARCHAR" property="ram" />
+  </resultMap>
+  <insert id="insert" parameterType="com.pojo.ProductSpecification">
+    insert into sb_product_specification (product_id, os_id, os, 
+      cpu, gpu, ram)
+    values (#{productId,jdbcType=INTEGER}, #{osId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, 
+      #{cpu,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select product_id, os_id, os, cpu, gpu, ram
+    from sb_product_specification
+  </select>
+  <resultMap id="BaseResultMap" type="com.pojo.ProductSpecification">
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="os_id" jdbcType="INTEGER" property="osId" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
+    <result column="gpu" jdbcType="VARCHAR" property="gpu" />
+    <result column="ram" jdbcType="VARCHAR" property="ram" />
+  </resultMap>
+  <insert id="insert" parameterType="com.pojo.ProductSpecification">
+    insert into sb_product_specification (product_id, os_id, os, 
+      cpu, gpu, ram)
+    values (#{productId,jdbcType=INTEGER}, #{osId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, 
+      #{cpu,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select product_id, os_id, os, cpu, gpu, ram
+    from sb_product_specification
+  </select>
+  <resultMap id="BaseResultMap" type="com.pojo.ProductSpecification">
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="os_id" jdbcType="INTEGER" property="osId" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
+    <result column="gpu" jdbcType="VARCHAR" property="gpu" />
+    <result column="ram" jdbcType="VARCHAR" property="ram" />
+  </resultMap>
+  <insert id="insert" parameterType="com.pojo.ProductSpecification">
+    insert into sb_product_specification (product_id, os_id, os, 
+      cpu, gpu, ram)
+    values (#{productId,jdbcType=INTEGER}, #{osId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, 
+      #{cpu,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select product_id, os_id, os, cpu, gpu, ram
+    from sb_product_specification
+  </select>
+</mapper>
