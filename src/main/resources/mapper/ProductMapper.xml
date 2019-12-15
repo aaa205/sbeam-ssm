@@ -13,13 +13,14 @@
     <result column="is_multi_player" jdbcType="BIT" property="isMultiPlayer" />
     <result column="is_cloud_save" jdbcType="BIT" property="isCloudSave" />
     <result column="supported_languages" jdbcType="VARCHAR" property="supportedLanguages" />
-    <result column="card_img" jdbcType="VARCHAR" property="cardImg" />
-    <result column="logo_img" jdbcType="VARCHAR" property="logoImg" />
+    <result column="card_img" jdbcType="VARCHAR" property="card_img" />
+    <result column="logo_img" jdbcType="VARCHAR" property="logo_img" />
     <result column="img_0" jdbcType="VARCHAR" property="img0" />
     <result column="img_1" jdbcType="VARCHAR" property="img1" />
     <result column="img_2" jdbcType="VARCHAR" property="img2" />
     <result column="img_3" jdbcType="VARCHAR" property="img3" />
   </resultMap>
+
   <insert id="insert" parameterType="com.pojo.Product">
     insert into sb_product (id, `name`, description, 
       price, release_date, developer, 
@@ -30,8 +31,8 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{releaseDate,jdbcType=BIGINT}, #{developer,jdbcType=VARCHAR}, 
       #{publisher,jdbcType=VARCHAR}, #{isSinglePlayer,jdbcType=BIT}, #{isMultiPlayer,jdbcType=BIT}, 
-      #{isCloudSave,jdbcType=BIT}, #{supportedLanguages,jdbcType=VARCHAR}, #{cardImg,jdbcType=VARCHAR}, 
-      #{logoImg,jdbcType=VARCHAR}, #{img0,jdbcType=VARCHAR}, #{img1,jdbcType=VARCHAR}, 
+      #{isCloudSave,jdbcType=BIT}, #{supportedLanguages,jdbcType=VARCHAR}, #{card_img,jdbcType=VARCHAR},
+      #{logo_img,jdbcType=VARCHAR}, #{img0,jdbcType=VARCHAR}, #{img1,jdbcType=VARCHAR},
       #{img2,jdbcType=VARCHAR}, #{img3,jdbcType=VARCHAR})
   </insert>
   <select id="selectAll" resultMap="BaseResultMap">
@@ -40,7 +41,7 @@
     img_2, img_3
     from sb_product
   </select>
-  <select id="selectIndexProducts" resultType="com.dto.IndexProductDTO">
+  <select id="selectIndexProducts" resultType="com.dto.IndexProductDTO" >
     select id,`name`,price,publisher,developer,card_img,logo_img
     from sb_product
     limit 4

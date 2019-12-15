@@ -9,7 +9,7 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="quantity" jdbcType="INTEGER" property="quantity" />
-    <result column="logo_img" jdbcType="VARCHAR" property="logoImg" />
+    <result column="logo_img" jdbcType="VARCHAR" property="logo_img" />
   </resultMap>
   <insert id="insert" parameterType="com.pojo.OrderItem">
     insert into sb_order_item (id, order_id, product_id, 
@@ -17,7 +17,7 @@
       quantity, logo_img)
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
       #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{quantity,jdbcType=INTEGER}, #{logoImg,jdbcType=VARCHAR})
+      #{quantity,jdbcType=INTEGER}, #{logo_img,jdbcType=VARCHAR})
   </insert>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, order_id, product_id, `name`, description, price, quantity, logo_img

@@ -13,9 +13,9 @@ public class IndexProductDTO {
 
     private String publisher;
 
-    private String cardImg;
+    private String card_img;
 
-    private String logoImg;
+    private String logo_img;
 
     public Integer getId() {
         return id;
@@ -57,19 +57,19 @@ public class IndexProductDTO {
         this.publisher = publisher;
     }
 
-    public String getCardImg() {
-        return cardImg;
+    public String getCard_img() {
+        return card_img;
     }
 
-    public void setCardImg(String cardImg) {
-        this.cardImg = cardImg;
+    public void setCard_img(String card_img) {
+        this.card_img = card_img;
     }
 
-    public String getLogoImg() {
-        return logoImg;
+    public String getLogo_img() {
+        return logo_img;
     }
 
-    public void setLogoImg(String logoImg) {
-        this.logoImg = logoImg;
+    public void setLogo_img(String logo_img) {
+        this.logo_img = logo_img;
     }
 }
