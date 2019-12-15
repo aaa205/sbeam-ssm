@@ -19,40 +19,9 @@
     select product_id, os_id, os, cpu, gpu, ram
     from sb_product_specification
   </select>
-  <resultMap id="BaseResultMap" type="com.pojo.ProductSpecification">
-    <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="os_id" jdbcType="INTEGER" property="osId" />
-    <result column="os" jdbcType="VARCHAR" property="os" />
-    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
-    <result column="gpu" jdbcType="VARCHAR" property="gpu" />
-    <result column="ram" jdbcType="VARCHAR" property="ram" />
-  </resultMap>
-  <insert id="insert" parameterType="com.pojo.ProductSpecification">
-    insert into sb_product_specification (product_id, os_id, os, 
-      cpu, gpu, ram)
-    values (#{productId,jdbcType=INTEGER}, #{osId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, 
-      #{cpu,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select product_id, os_id, os, cpu, gpu, ram
-    from sb_product_specification
-  </select>
-  <resultMap id="BaseResultMap" type="com.pojo.ProductSpecification">
-    <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="os_id" jdbcType="INTEGER" property="osId" />
-    <result column="os" jdbcType="VARCHAR" property="os" />
-    <result column="cpu" jdbcType="VARCHAR" property="cpu" />
-    <result column="gpu" jdbcType="VARCHAR" property="gpu" />
-    <result column="ram" jdbcType="VARCHAR" property="ram" />
-  </resultMap>
-  <insert id="insert" parameterType="com.pojo.ProductSpecification">
-    insert into sb_product_specification (product_id, os_id, os, 
-      cpu, gpu, ram)
-    values (#{productId,jdbcType=INTEGER}, #{osId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, 
-      #{cpu,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select product_id, os_id, os, cpu, gpu, ram
-    from sb_product_specification
+  <select id="selectIndexProducts" resultType="com.dto.IndexProductDTO">
+    select id,`name`,`description`,price,publisher,developer,card_img,logo_img
+    from sb_product
+    limit 4
   </select>
 </mapper>

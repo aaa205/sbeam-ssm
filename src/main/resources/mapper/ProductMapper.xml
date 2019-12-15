@@ -40,4 +40,9 @@
     img_2, img_3
     from sb_product
   </select>
+  <select id="selectIndexProducts" resultType="com.dto.IndexProductDTO">
+    select id,`name`,price,publisher,developer,card_img,logo_img
+    from sb_product
+    limit 4
+  </select>
 </mapper>

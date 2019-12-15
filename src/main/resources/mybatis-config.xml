@@ -5,6 +5,11 @@
 <configuration>
     <mappers>
         <!-- 映射器，告诉 MyBatis到哪里去找映射文件-->
-
+        <mapper resource="mapper/CartMapper.xml"/>
+        <mapper resource="mapper/OrderItemMapper.xml"/>
+        <mapper resource="mapper/OrderMapper.xml"/>
+        <mapper resource="mapper/ProductMapper.xml"/>
+        <mapper resource="mapper/ProductSpecificationMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
