@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 public class OrderItem implements Serializable {
     private Integer id;
 
-    private Integer orderId;
+    private Integer order_id;
 
-    private Integer productId;
+    private Integer product_id;
 
     private String name;
 
@@ -18,7 +18,7 @@ public class OrderItem implements Serializable {
 
     private Integer quantity;
 
-    private String logoImg;
+    private String logo_img;
 
     private static final long serialVersionUID = 1L;
 
@@ -30,20 +30,20 @@ public class OrderItem implements Serializable {
         this.id = id;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getOrder_id() {
+        return order_id;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
@@ -78,12 +78,12 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getLogoImg() {
-        return logoImg;
+    public String getLogo_img() {
+        return logo_img;
     }
 
-    public void setLogoImg(String logoImg) {
-        this.logoImg = logoImg == null ? null : logoImg.trim();
+    public void setLogo_img(String logo_img) {
+        this.logo_img = logo_img == null ? null : logo_img.trim();
     }
 
     @Override
@@ -93,13 +93,13 @@ public class OrderItem implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", orderId=").append(orderId);
-        sb.append(", productId=").append(productId);
+        sb.append(", order_id=").append(order_id);
+        sb.append(", product_id=").append(product_id);
         sb.append(", name=").append(name);
         sb.append(", description=").append(description);
         sb.append(", price=").append(price);
         sb.append(", quantity=").append(quantity);
-        sb.append(", logoImg=").append(logoImg);
+        sb.append(", logo_img=").append(logo_img);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

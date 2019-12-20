@@ -1,15 +1,16 @@
 package com.dao;
 
-import com.dto.IndexProductDTO;
+import com.dto.ProductDetailDTO;
 import com.pojo.Product;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
+
 public interface ProductMapper {
     int insert(Product record);
 
     List<Product> selectAll();
-    List<IndexProductDTO> selectIndexProducts();
+    List<Product> selectIndexProducts();
+    ProductDetailDTO selectProductDetailById(@Param("id") int id);
+    List<Product> selectProductsByKw(@Param("kw") String kw);
 }

@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Order implements Serializable {
     private Integer id;
 
-    private Integer userId;
+    private Integer user_id;
 
-    private Long createdTime;
+    private Long created_time;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,20 +19,20 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public Long getCreatedTime() {
-        return createdTime;
+    public Long getCreated_time() {
+        return created_time;
     }
 
-    public void setCreatedTime(Long createdTime) {
-        this.createdTime = createdTime;
+    public void setCreated_time(Long created_time) {
+        this.created_time = created_time;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class Order implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", userId=").append(userId);
-        sb.append(", createdTime=").append(createdTime);
+        sb.append(", user_id=").append(user_id);
+        sb.append(", created_time=").append(created_time);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

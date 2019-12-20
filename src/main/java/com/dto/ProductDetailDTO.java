@@ -1,9 +1,11 @@
-package com.pojo;
+package com.dto;
 
-import java.io.Serializable;
+import com.pojo.ProductSpecification;
+
 import java.math.BigDecimal;
+import java.util.List;
 
-public class Product implements Serializable {
+public class ProductDetailDTO {
     private Integer id;
 
     private String name;
@@ -38,7 +40,7 @@ public class Product implements Serializable {
 
     private String img_3;
 
-    private static final long serialVersionUID = 1L;
+    private List<ProductSpecification> spec;
 
     public Integer getId() {
         return id;
@@ -53,7 +55,7 @@ public class Product implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getDescription() {
@@ -61,7 +63,7 @@ public class Product implements Serializable {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 
     public BigDecimal getPrice() {
@@ -85,7 +87,7 @@ public class Product implements Serializable {
     }
 
     public void setDeveloper(String developer) {
-        this.developer = developer == null ? null : developer.trim();
+        this.developer = developer;
     }
 
     public String getPublisher() {
@@ -93,7 +95,7 @@ public class Product implements Serializable {
     }
 
     public void setPublisher(String publisher) {
-        this.publisher = publisher == null ? null : publisher.trim();
+        this.publisher = publisher;
     }
 
     public Boolean getIs_single_player() {
@@ -125,7 +127,7 @@ public class Product implements Serializable {
     }
 
     public void setSupported_languages(String supported_languages) {
-        this.supported_languages = supported_languages == null ? null : supported_languages.trim();
+        this.supported_languages = supported_languages;
     }
 
     public String getCard_img() {
@@ -133,7 +135,7 @@ public class Product implements Serializable {
     }
 
     public void setCard_img(String card_img) {
-        this.card_img = card_img == null ? null : card_img.trim();
+        this.card_img = card_img;
     }
 
     public String getLogo_img() {
@@ -141,7 +143,7 @@ public class Product implements Serializable {
     }
 
     public void setLogo_img(String logo_img) {
-        this.logo_img = logo_img == null ? null : logo_img.trim();
+        this.logo_img = logo_img;
     }
 
     public String getImg_0() {
@@ -149,7 +151,7 @@ public class Product implements Serializable {
     }
 
     public void setImg_0(String img_0) {
-        this.img_0 = img_0 == null ? null : img_0.trim();
+        this.img_0 = img_0;
     }
 
     public String getImg_1() {
@@ -157,7 +159,7 @@ public class Product implements Serializable {
     }
 
     public void setImg_1(String img_1) {
-        this.img_1 = img_1 == null ? null : img_1.trim();
+        this.img_1 = img_1;
     }
 
     public String getImg_2() {
@@ -165,7 +167,7 @@ public class Product implements Serializable {
     }
 
     public void setImg_2(String img_2) {
-        this.img_2 = img_2 == null ? null : img_2.trim();
+        this.img_2 = img_2;
     }
 
     public String getImg_3() {
@@ -173,34 +175,14 @@ public class Product implements Serializable {
     }
 
     public void setImg_3(String img_3) {
-        this.img_3 = img_3 == null ? null : img_3.trim();
+        this.img_3 = img_3;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", description=").append(description);
-        sb.append(", price=").append(price);
-        sb.append(", release_date=").append(release_date);
-        sb.append(", developer=").append(developer);
-        sb.append(", publisher=").append(publisher);
-        sb.append(", is_single_player=").append(is_single_player);
-        sb.append(", is_multi_player=").append(is_multi_player);
-        sb.append(", is_cloud_save=").append(is_cloud_save);
-        sb.append(", supported_languages=").append(supported_languages);
-        sb.append(", card_img=").append(card_img);
-        sb.append(", logo_img=").append(logo_img);
-        sb.append(", img_0=").append(img_0);
-        sb.append(", img_1=").append(img_1);
-        sb.append(", img_2=").append(img_2);
-        sb.append(", img_3=").append(img_3);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public List<ProductSpecification> getSpec() {
+        return spec;
+    }
+
+    public void setSpec(List<ProductSpecification> spec) {
+        this.spec = spec;
     }
 }

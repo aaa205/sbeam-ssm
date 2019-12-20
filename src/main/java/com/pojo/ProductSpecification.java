@@ -3,9 +3,9 @@ package com.pojo;
 import java.io.Serializable;
 
 public class ProductSpecification implements Serializable {
-    private Integer productId;
+    private Integer product_id;
 
-    private Integer osId;
+    private Integer os_id;
 
     private String os;
 
@@ -17,20 +17,20 @@ public class ProductSpecification implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
-    public Integer getOsId() {
-        return osId;
+    public Integer getOs_id() {
+        return os_id;
     }
 
-    public void setOsId(Integer osId) {
-        this.osId = osId;
+    public void setOs_id(Integer os_id) {
+        this.os_id = os_id;
     }
 
     public String getOs() {
@@ -71,8 +71,8 @@ public class ProductSpecification implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", productId=").append(productId);
-        sb.append(", osId=").append(osId);
+        sb.append(", product_id=").append(product_id);
+        sb.append(", os_id=").append(os_id);
         sb.append(", os=").append(os);
         sb.append(", cpu=").append(cpu);
         sb.append(", gpu=").append(gpu);

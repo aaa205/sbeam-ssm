@@ -3,28 +3,28 @@ package com.pojo;
 import java.io.Serializable;
 
 public class Cart implements Serializable {
-    private Integer userId;
+    private Integer user_id;
 
-    private Integer productId;
+    private Integer product_id;
 
     private Integer quantity;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
     public Integer getQuantity() {
@@ -41,8 +41,8 @@ public class Cart implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", userId=").append(userId);
-        sb.append(", productId=").append(productId);
+        sb.append(", user_id=").append(user_id);
+        sb.append(", product_id=").append(product_id);
         sb.append(", quantity=").append(quantity);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
