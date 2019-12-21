@@ -2,18 +2,22 @@ package com.controller;
 
 import com.aop.RoleAuthentication;
 import com.dto.CartDTO;
+import com.dto.CartUpdateDTO;
 import com.dto.CommonDTO;
+import com.exception.BusinessException;
 import com.pojo.Cart;
 import com.pojo.User;
 import com.service.CartService;
 import com.util.GsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 @RestController
@@ -41,10 +45,37 @@ public class CartController {
 
     @GetMapping("/addCartItems")
     @RoleAuthentication
-    public CommonDTO addUserCartItem(HttpSession session, @PathParam("add") String add) {
+    public CommonDTO addUserCart(HttpSession session, @PathParam("add") String add) {
         Cart cart = GsonUtil.INSTANCE.fromJson(add, Cart.class);
         cart.setUser_id(((User) session.getAttribute("user")).getId());//填充用户id
-        cartService.addCart(cart);
-        return new CommonDTO(0,"update success");
+        cartService.pushToCart(cart);
+        return new CommonDTO(0, "addQuantity success");
+    }
+
+    /**
+     * 修改购物车内容
+     *
+     * @param session
+     * @param cartUpdate
+     * @return
+     */
+    @PostMapping("/asynUpdate")
+    @RoleAuthentication
+    public CommonDTO updateCart(HttpSession session, @Valid CartUpdateDTO cartUpdate) {
+        Cart cart = new Cart();
+        cart.setProduct_id(cartUpdate.getProduct_id());
+        cart.setUser_id(((User) session.getAttribute("user")).getId());
+        cart.setQuantity(cartUpdate.getQuantity());
+        String type = cartUpdate.getType();
+        if ("delete".equals(type)) {
+            cartService.deleteCart(cart);
+            return new CommonDTO(0,"success");
+        } else if ("update".equals(type)) {
+            cartService.updateCart(cart);
+            return new CommonDTO(0,"success");
+        }else{
+            throw new BusinessException(1,"invalid type");
+        }
+
     }
 }

@@ -18,10 +18,20 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addCart(Cart cart) {
+    public void pushToCart(Cart cart) {
         if(cartMapper.exist(cart)){
-            cartMapper.update(cart);
+            cartMapper.addQuantity(cart);
         }else
             cartMapper.insert(cart);
+    }
+
+    @Override
+    public void deleteCart(Cart cart) {
+        cartMapper.delete(cart);
+    }
+
+    @Override
+    public void updateCart(Cart cart) {
+        cartMapper.update(cart);
     }
 }

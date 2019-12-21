@@ -19,6 +19,12 @@ public class RoleAuthenticationAspect {
     public void pointcut() {
     }
 
+    /**
+     * 检查登录
+     * @param proceedingJoinPoint
+     * @return 403如果没登录
+     * @throws Throwable
+     */
     @Around("pointcut() && @annotation(RoleAuthentication) ")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder

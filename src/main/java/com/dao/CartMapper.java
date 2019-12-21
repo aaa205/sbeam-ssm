@@ -13,5 +13,7 @@ public interface CartMapper {
 
     List<CartItem> selectCartItemsByUserId(@Param("userId")int userId);
     boolean exist(Cart cart);
+    int addQuantity(Cart cart);
+    int delete(Cart cart);
     int update(Cart cart);
 }
