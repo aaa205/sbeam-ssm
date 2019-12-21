@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CartMapper">
+    <resultMap id="BaseResultMap" type="com.pojo.Cart">
+        <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+        <result column="product_id" jdbcType="INTEGER" property="product_id"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.pojo.Cart">
+        insert into sb_cart (user_id, product_id, quantity)
+        values (#{user_id,jdbcType=INTEGER}, #{product_id,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER})
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select user_id, product_id, quantity
+        from sb_cart
+    </select>
+    <select id="selectCartItemsByUserId" resultType="com.pojo.CartItem">
+        SELECT id, `name`, `description`, price, logo_img, quantity
+        FROM sb_product,
+             sb_cart
+        WHERE sb_cart.user_id = #{userId}
+          AND sb_cart.product_id = id
+    </select>
+    <select id="exist" resultType="boolean" parameterType="com.pojo.Cart">
+        SELECT count(user_id)
+        FROM sb_cart
+        WHERE user_id = #{user_id}
+          AND product_id = #{product_id}
+    </select>
+    <update id="addQuantity" parameterType="com.pojo.Cart">
+        UPDATE sb_cart
+        SET quantity=quantity + #{quantity}
+        WHERE user_id = #{user_id}
+          AND product_id = #{product_id}
+    </update>
+    <update id="update" parameterType="com.pojo.Cart">
+        UPDATE sb_cart
+        SET quantity= #{quantity}
+        WHERE user_id = #{user_id}
+          AND product_id = #{product_id}
+    </update>
+    <delete id="delete" parameterType="com.pojo.Cart">
+        DELETE
+        FROM sb_cart
+        WHERE user_id = #{user_id}
+          AND product_id = #{product_id}
+    </delete>
+    <delete id="deleteForEach" parameterType="java.util.List">
+        delete from sb_cart where
+        <foreach collection="list" item="cart" separator="or">
+            (user_id=#{cart.user_id} and product_id=#{cart.product_id})
+        </foreach>
+    </delete>
+
+
+    <insert id="insertForEach" parameterType="java.util.List">
+        insert into sb_order_item
+        (id, order_id, product_id,`name`, `description`, price,quantity, logo_img)
+        values
+        <foreach collection="list" item="cart" separator=",">
+            (null,#{cart.order_id},#{cart.product_id},#{cart.name},#{cart.description},#{cart.price},#{cart.quantity},#{cart.logo_img})
+        </foreach>
+    </insert>
+
+</mapper>

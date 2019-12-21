@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.User">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+  </resultMap>
+  <insert id="insert" parameterType="com.pojo.User" keyProperty="id" useGeneratedKeys="true">
+    insert into sb_user (id, `name`, email,
+      `password`)
+    values ( null,#{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, `name`, email, `password`, avatar
+    from sb_user
+  </select>
+  <select id="selectById" resultMap="BaseResultMap">
+    select id, `name`, email,avatar
+    from sb_user
+    where id=#{id}
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    select id, `name`, email,avatar
+    from sb_user
+    where email=#{email}
+  </select>
+  <select id="selectByEmailAndPassword" resultMap="BaseResultMap">
+    select id, `name`, email,avatar
+    from sb_user
+    where email=#{email} and `password`=#{password}
+  </select>
+</mapper>

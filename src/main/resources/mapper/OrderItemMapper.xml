@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OrderItemMapper">
+    <resultMap id="BaseResultMap" type="com.pojo.OrderItem">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_id" jdbcType="INTEGER" property="order_id"/>
+        <result column="product_id" jdbcType="INTEGER" property="product_id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="logo_img" jdbcType="VARCHAR" property="logo_img"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.pojo.OrderItem">
+        insert into sb_order_item (id, order_id, product_id,
+                                   `name`, description, price,
+                                   quantity, logo_img)
+        values (#{id,jdbcType=INTEGER}, #{order_id,jdbcType=INTEGER}, #{product_id,jdbcType=INTEGER},
+                #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+                #{quantity,jdbcType=INTEGER}, #{logo_img,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertForEach" parameterType="java.util.List">
+        insert into sb_order_item
+        (id, order_id, product_id,`name`, `description`, price,quantity, logo_img)
+        values
+        <foreach collection="list" item="cart" separator=",">
+            (null,#{cart.order_id},#{cart.product_id},#{cart.name},#{cart.description},#{cart.price},#{cart.quantity},#{cart.logo_img})
+        </foreach>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id,
+               order_id,
+               product_id,
+               `name`,
+               description,
+               price,
+               quantity,
+               logo_img
+        from sb_order_item
+    </select>
+    <select id="selectOrderItemsByOrderId" resultType="com.pojo.OrderItem">
+        select *
+        from sb_order_item
+        where order_id = #{orderId}
+    </select>
+    <select id="createOrderItemByProductId" resultType="com.pojo.OrderItem">
+        select id as product_id ,`name`,`description`,price,logo_img
+        from sb_product
+        where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.pojo.Order">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+        <result column="created_time" jdbcType="BIGINT" property="created_time"/>
+    </resultMap>
+    <resultMap id="OrderDetail" type="com.dto.OrderDetailDTO">
+        <id property="order_id" column="id"/>
+        <result property="created_time" column="created_time"/>
+        <collection property="items" ofType="com.pojo.OrderItem" column="id" select="com.dao.OrderItemMapper.selectOrderItemsByOrderId">
+            <id property="product_id" column="product_id"/>
+            <result property="name" column="name"/>
+            <result property="description" column="description"/>
+            <result property="price" column="price"/>
+            <result property="quantity" column="quantity"/>
+            <result property="logo_img" column="logo_img"/>
+        </collection>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.pojo.Order" keyProperty="id" useGeneratedKeys="true">
+        insert into sb_order (id, user_id, created_time)
+        values (#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{created_time,jdbcType=BIGINT})
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, user_id, created_time
+        from sb_order
+    </select>
+    <select id="selectOrderListByUserId" resultMap="OrderDetail">
+        select id,created_time from sb_order where user_id=#{userId}
+    </select>
+
+</mapper>
