@@ -1,8 +1,8 @@
 package com.dto;
 
 public class CommonDTO {
-    private int ret;
-    private String msg;
+    protected int ret;
+    protected String msg;
 
     public CommonDTO() {
     }
