@@ -12,4 +12,6 @@ public interface CartMapper {
     List<Cart> selectAll();
 
     List<CartItem> selectCartItemsByUserId(@Param("userId")int userId);
+    boolean exist(Cart cart);
+    int update(Cart cart);
 }
