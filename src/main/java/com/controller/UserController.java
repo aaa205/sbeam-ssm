@@ -4,7 +4,6 @@ import com.dto.CommonDTO;
 import com.dto.UserRegisterDTO;
 import com.pojo.User;
 import com.service.UserService;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +27,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public CommonDTO doRegister(HttpServletRequest request, HttpServletResponse response, @Valid UserRegisterDTO registerDTO) {
+    public CommonDTO doRegister(HttpServletRequest request, HttpServletResponse response, @Valid @RequestBody UserRegisterDTO registerDTO) {
         //数据错误
         if (!registerDTO.getPassword().equals(registerDTO.getRepeat_password())) {
             return new CommonDTO(1, "重复密码不对");
@@ -45,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public CommonDTO doLogin(HttpServletRequest request, HttpServletResponse response, @RequestBody @Valid User user) {
+    public CommonDTO doLogin(HttpServletRequest request, HttpServletResponse response,  @Valid @RequestBody User user) {
         User newUser =userService.doLogin(user);
         if(newUser== null){
             return new CommonDTO(1,"邮箱或密码错误");

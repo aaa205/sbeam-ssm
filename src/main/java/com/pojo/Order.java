@@ -9,6 +9,14 @@ public class Order implements Serializable {
 
     private Long created_time;
 
+    public Order() {
+    }
+
+    public Order(Integer user_id, Long created_time) {
+        this.user_id = user_id;
+        this.created_time = created_time;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

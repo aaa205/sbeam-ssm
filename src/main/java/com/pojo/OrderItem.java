@@ -1,11 +1,14 @@
 package com.pojo;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class OrderItem implements Serializable {
+    @Expose(serialize = false)
     private Integer id;
-
+    @Expose(serialize = false)
     private Integer order_id;
 
     private Integer product_id;

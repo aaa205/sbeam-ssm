@@ -13,4 +13,5 @@ public interface ProductMapper {
     List<Product> selectIndexProducts();
     ProductDetailDTO selectProductDetailById(@Param("id") int id);
     List<Product> selectProductsByKw(@Param("kw") String kw);
+
 }

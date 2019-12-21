@@ -10,10 +10,7 @@ import com.pojo.User;
 import com.service.CartService;
 import com.util.GsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,7 +58,7 @@ public class CartController {
      */
     @PostMapping("/asynUpdate")
     @RoleAuthentication
-    public CommonDTO updateCart(HttpSession session, @Valid CartUpdateDTO cartUpdate) {
+    public CommonDTO updateCart(HttpSession session, @Valid @RequestBody CartUpdateDTO cartUpdate) {
         Cart cart = new Cart();
         cart.setProduct_id(cartUpdate.getProduct_id());
         cart.setUser_id(((User) session.getAttribute("user")).getId());

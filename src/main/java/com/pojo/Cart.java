@@ -3,10 +3,9 @@ package com.pojo;
 import java.io.Serializable;
 
 public class Cart implements Serializable {
+
     private Integer user_id;
-
     private Integer product_id;
-
     private Integer quantity;
 
     private static final long serialVersionUID = 1L;
