@@ -9,6 +9,7 @@ public interface UserMapper {
     int insert(User record);
 
     List<User> selectAll();
-    User select(@Param("id") int id, @Param("email") String email);
+    User selectById(@Param("id") int id);
     User selectByEmail(@Param("email") String email);
+    User selectByEmailAndPassword(@Param("email") String email,@Param("password") String password);
 }

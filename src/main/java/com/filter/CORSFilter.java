@@ -16,11 +16,12 @@ import java.io.IOException;
 public class CORSFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        httpServletResponse.addHeader("Access-Control-Allow-Origin", "*");
+        httpServletResponse.addHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         httpServletResponse.addHeader("Access-Control-Allow-Credentials","true");
         if (httpServletRequest.getHeader("Access-Control-Request-Method") != null
                 && "OPTIONS".equals(httpServletRequest.getMethod())) {
             httpServletResponse.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+            httpServletResponse.addHeader("Access-Control-Allow-Headers","content-type");
         }
         filterChain.doFilter(httpServletRequest,httpServletResponse);
 

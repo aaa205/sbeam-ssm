@@ -27,8 +27,13 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException(2, "该用户已注册");
     }
 
+    /**
+     * 登录
+     * @param user
+     * @return User如果有对应用户 否则返回 null
+     */
     @Override
     public User doLogin(User user) {
-        return null;
+        return userMapper.selectByEmailAndPassword(user.getEmail(),user.getPassword());
     }
 }
