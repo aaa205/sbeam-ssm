@@ -2,21 +2,29 @@ package com.controller;
 
 import com.dto.CommonDTO;
 import com.dto.UserRegisterDTO;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.pojo.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private DefaultKaptcha kaptcha;
 
     /**
      * 注册账号
@@ -32,6 +40,9 @@ public class UserController {
         if (!registerDTO.getPassword().equals(registerDTO.getRepeat_password())) {
             return new CommonDTO(1, "重复密码不对");
         }
+        String verifyCode=(String)request.getSession().getAttribute("verifyCode");
+        if(!registerDTO.getVerifyCode().equals(verifyCode))
+            return new CommonDTO(1,"验证码错误");
         User user = new User();
         user.setEmail(registerDTO.getEmail());
         user.setPassword(registerDTO.getPassword());
@@ -62,6 +73,18 @@ public class UserController {
         response.addCookie(cookie);
         return new CommonDTO(0,"注销成功");
     }
+    @GetMapping("/verifyCode")
+    public String getVerifyCode(HttpSession session) throws IOException {
+        String verifyCode=kaptcha.createText();
+        ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+        ImageIO.write(kaptcha.createImage(verifyCode),"jpg",outputStream);
+        String base64Img= Base64Utils.encodeToString(outputStream.toByteArray());
+        outputStream.close();
+        String res="data:image/jpg;base64,"+base64Img;
+        session.setAttribute("verifyCode",verifyCode);
+        return res;
+    }
+
 
     /**
      * 登录后设置cookie

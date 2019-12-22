@@ -34,5 +34,10 @@ public class GlobalControllerExceptionHandler {
     public CommonDTO handleNotValidException(MethodArgumentNotValidException e){
         return new CommonDTO(1,e.getMessage());
     }
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handleAllException(RuntimeException e){
+        return e.getMessage();
+    }
 
 }

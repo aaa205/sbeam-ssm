@@ -18,6 +18,16 @@ public class UserRegisterDTO {
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]{3,30}$")
     private String repeat_password;
+    @NotBlank
+    private String verifyCode;
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
 
     public String getEmail() {
         return email;
