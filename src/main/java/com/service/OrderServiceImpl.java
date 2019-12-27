@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.selectOrderListByUserId(userId);
     }
 
+    @Override
+    public List<OrderItem> selectAllOrderItem() {
+        return orderItemMapper.selectAll();
+    }
+
     @Transactional
     @Override
     public void creatOrder(CommitOrderDTO commitOrder, int userId) {

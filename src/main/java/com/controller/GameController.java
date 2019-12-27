@@ -1,13 +1,11 @@
 package com.controller;
 
+import com.dto.CommonDTO;
 import com.dto.ProductDetailDTO;
 import com.pojo.Product;
 import com.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -38,4 +36,38 @@ public class GameController {
     public List<Product> getGames(@PathParam("kw")String kw){
         return productService.selectProductsByKw(kw);
     }
+
+    /**
+     * 插入一个游戏
+     * @param form
+     * @return 新插入行Product
+     */
+    @PostMapping
+    public Product addGame(@RequestBody Product form){
+        productService.insertProduct(form);
+        return form;
+    }
+
+    /**
+     * 更新游戏
+     * @param form
+     * @return
+     */
+    @PutMapping
+    public CommonDTO updateGame(@RequestBody  Product form){
+        productService.updateProduct(form);
+        return new CommonDTO(0,"success");
+    }
+
+    /**
+     * 删除游戏
+     * @param delIds
+     * @return
+     */
+    @DeleteMapping
+    public CommonDTO deleteGames(@RequestBody  List<Integer> delIds){
+        int affect=productService.deleteProductById(delIds);
+        return new CommonDTO(0,"删除了"+affect+"行");
+    }
+
 }

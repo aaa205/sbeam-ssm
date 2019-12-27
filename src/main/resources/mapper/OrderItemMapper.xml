@@ -32,7 +32,7 @@
                order_id,
                product_id,
                `name`,
-               description,
+               `description`,
                price,
                quantity,
                logo_img

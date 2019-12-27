@@ -1,94 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ProductMapper">
-  <resultMap id="BaseResultMap" type="com.pojo.Product">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="release_date" jdbcType="BIGINT" property="release_date" />
-    <result column="developer" jdbcType="VARCHAR" property="developer" />
-    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
-    <result column="is_single_player" jdbcType="BIT" property="is_single_player" />
-    <result column="is_multi_player" jdbcType="BIT" property="is_multi_player" />
-    <result column="is_cloud_save" jdbcType="BIT" property="is_cloud_save" />
-    <result column="supported_languages" jdbcType="VARCHAR" property="supported_languages" />
-    <result column="card_img" jdbcType="VARCHAR" property="card_img" />
-    <result column="logo_img" jdbcType="VARCHAR" property="logo_img" />
-    <result column="img_0" jdbcType="VARCHAR" property="img_0" />
-    <result column="img_1" jdbcType="VARCHAR" property="img_1" />
-    <result column="img_2" jdbcType="VARCHAR" property="img_2" />
-    <result column="img_3" jdbcType="VARCHAR" property="img_3" />
-  </resultMap>
-  <resultMap id="ProductDetail" type="com.dto.ProductDetailDTO">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="release_date" jdbcType="BIGINT" property="release_date" />
-    <result column="developer" jdbcType="VARCHAR" property="developer" />
-    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
-    <result column="is_single_player" jdbcType="BIT" property="is_single_player" />
-    <result column="is_multi_player" jdbcType="BIT" property="is_multi_player" />
-    <result column="is_cloud_save" jdbcType="BIT" property="is_cloud_save" />
-    <result column="supported_languages" jdbcType="VARCHAR" property="supported_languages" />
-    <result column="card_img" jdbcType="VARCHAR" property="card_img" />
-    <result column="logo_img" jdbcType="VARCHAR" property="logo_img" />
-    <result column="img_0" jdbcType="VARCHAR" property="img_0" />
-    <result column="img_1" jdbcType="VARCHAR" property="img_1" />
-    <result column="img_2" jdbcType="VARCHAR" property="img_2" />
-    <result column="img_3" jdbcType="VARCHAR" property="img_3" />
-    <collection property="spec" ofType="com.pojo.ProductSpecification"
-                column="id" select="com.dao.ProductSpecificationMapper.selectSpecByProductId">
-      <result column="os_id" jdbcType="INTEGER" property="os_id" />
-      <result column="os" jdbcType="VARCHAR" property="os" />
-      <result column="cpu" jdbcType="VARCHAR" property="cpu" />
-      <result column="gpu" jdbcType="VARCHAR" property="gpu" />
-      <result column="ram" jdbcType="VARCHAR" property="ram" />
-    </collection>
-  </resultMap>
-  <select id="selectProductDetailById" resultMap="ProductDetail">
-    SELECT id,`name`,`description`,price,release_date,
-           developer,publisher,is_single_player,is_multi_player,is_cloud_save,
-           supported_languages,logo_img,img_0,img_1,img_2,img_3
-    FROM sb_product
-    WHERE sb_product.id=#{id}
-  </select>
-  <insert id="insert" parameterType="com.pojo.Product">
-    insert into sb_product (id, `name`, `description`,
-      price, release_date, developer, 
-      publisher, is_single_player, is_multi_player, 
-      is_cloud_save, supported_languages, card_img, 
-      logo_img, img_0, img_1, 
-      img_2, img_3)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DECIMAL}, #{release_date,jdbcType=BIGINT}, #{developer,jdbcType=VARCHAR}, 
-      #{publisher,jdbcType=VARCHAR}, #{is_single_player,jdbcType=BIT}, #{is_multi_player,jdbcType=BIT}, 
-      #{is_cloud_save,jdbcType=BIT}, #{supported_languages,jdbcType=VARCHAR}, #{card_img,jdbcType=VARCHAR}, 
-      #{logo_img,jdbcType=VARCHAR}, #{img_0,jdbcType=VARCHAR}, #{img_1,jdbcType=VARCHAR}, 
-      #{img_2,jdbcType=VARCHAR}, #{img_3,jdbcType=VARCHAR})
-  </insert>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, `name`, `description`, price, release_date, developer, publisher, is_single_player,
-    is_multi_player, is_cloud_save, supported_languages, card_img, logo_img, img_0, img_1, 
-    img_2, img_3
-    from sb_product
-  </select>
-  <select id="selectIndexProducts" resultType="com.pojo.Product" >
-    select id,`name`,price,publisher,developer,card_img,logo_img
-    from sb_product
-    limit 4
-  </select>
-  <select id="selectProductsByKw" resultType="com.pojo.Product">
-    select id,`name`,price,publisher,developer,card_img,logo_img
-    from sb_product
-    <where>
-      <if test="kw!=null and kw!=''">
-        and  `name` like concat('%',#{kw},'%')
-      </if>
-    </where>
-    limit 80
-  </select>
-
+    <resultMap id="BaseResultMap" type="com.pojo.Product">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="release_date" jdbcType="BIGINT" property="release_date"/>
+        <result column="developer" jdbcType="VARCHAR" property="developer"/>
+        <result column="publisher" jdbcType="VARCHAR" property="publisher"/>
+        <result column="is_single_player" jdbcType="BIT" property="is_single_player"/>
+        <result column="is_multi_player" jdbcType="BIT" property="is_multi_player"/>
+        <result column="is_cloud_save" jdbcType="BIT" property="is_cloud_save"/>
+        <result column="supported_languages" jdbcType="VARCHAR" property="supported_languages"/>
+        <result column="card_img" jdbcType="VARCHAR" property="card_img"/>
+        <result column="logo_img" jdbcType="VARCHAR" property="logo_img"/>
+        <result column="img_0" jdbcType="VARCHAR" property="img_0"/>
+        <result column="img_1" jdbcType="VARCHAR" property="img_1"/>
+        <result column="img_2" jdbcType="VARCHAR" property="img_2"/>
+        <result column="img_3" jdbcType="VARCHAR" property="img_3"/>
+    </resultMap>
+    <resultMap id="ProductDetail" type="com.dto.ProductDetailDTO">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="release_date" jdbcType="BIGINT" property="release_date"/>
+        <result column="developer" jdbcType="VARCHAR" property="developer"/>
+        <result column="publisher" jdbcType="VARCHAR" property="publisher"/>
+        <result column="is_single_player" jdbcType="BIT" property="is_single_player"/>
+        <result column="is_multi_player" jdbcType="BIT" property="is_multi_player"/>
+        <result column="is_cloud_save" jdbcType="BIT" property="is_cloud_save"/>
+        <result column="supported_languages" jdbcType="VARCHAR" property="supported_languages"/>
+        <result column="card_img" jdbcType="VARCHAR" property="card_img"/>
+        <result column="logo_img" jdbcType="VARCHAR" property="logo_img"/>
+        <result column="img_0" jdbcType="VARCHAR" property="img_0"/>
+        <result column="img_1" jdbcType="VARCHAR" property="img_1"/>
+        <result column="img_2" jdbcType="VARCHAR" property="img_2"/>
+        <result column="img_3" jdbcType="VARCHAR" property="img_3"/>
+        <collection property="spec" ofType="com.pojo.ProductSpecification"
+                    column="id" select="com.dao.ProductSpecificationMapper.selectSpecByProductId">
+            <result column="os_id" jdbcType="INTEGER" property="os_id"/>
+            <result column="os" jdbcType="VARCHAR" property="os"/>
+            <result column="cpu" jdbcType="VARCHAR" property="cpu"/>
+            <result column="gpu" jdbcType="VARCHAR" property="gpu"/>
+            <result column="ram" jdbcType="VARCHAR" property="ram"/>
+        </collection>
+    </resultMap>
+    <select id="selectProductDetailById" resultMap="ProductDetail">
+        SELECT id,
+               `name`,
+               `description`,
+               price,
+               release_date,
+               developer,
+               publisher,
+               is_single_player,
+               is_multi_player,
+               is_cloud_save,
+               supported_languages,
+               logo_img,
+               img_0,
+               img_1,
+               img_2,
+               img_3
+        FROM sb_product
+        WHERE sb_product.id = #{id}
+    </select>
+    <insert id="insert" parameterType="com.pojo.Product">
+        insert into sb_product (id, `name`, `description`,
+                                price, release_date, developer,
+                                publisher, is_single_player, is_multi_player,
+                                is_cloud_save, supported_languages, card_img,
+                                logo_img, img_0, img_1,
+                                img_2, img_3)
+            values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                    #{price,jdbcType=DECIMAL}, #{release_date,jdbcType=BIGINT}, #{developer,jdbcType=VARCHAR},
+                    #{publisher,jdbcType=VARCHAR}, #{is_single_player,jdbcType=BIT}, #{is_multi_player,jdbcType=BIT},
+                    #{is_cloud_save,jdbcType=BIT}, #{supported_languages,jdbcType=VARCHAR},
+                    #{card_img,jdbcType=VARCHAR},
+                    #{logo_img,jdbcType=VARCHAR}, #{img_0,jdbcType=VARCHAR}, #{img_1,jdbcType=VARCHAR},
+                    #{img_2,jdbcType=VARCHAR}, #{img_3,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertForm" parameterType="com.pojo.Product" keyProperty="id" useGeneratedKeys="true">
+        insert into sb_product (`name`, `description`, price, release_date, developer, publisher)
+            values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+                    #{release_date,jdbcType=BIGINT},
+                    #{developer,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR})
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id,
+               `name`,
+               `description`,
+               price,
+               release_date,
+               developer,
+               publisher,
+               is_single_player,
+               is_multi_player,
+               is_cloud_save,
+               supported_languages,
+               card_img,
+               logo_img,
+               img_0,
+               img_1,
+               img_2,
+               img_3
+        from sb_product
+    </select>
+    <select id="selectIndexProducts" resultType="com.pojo.Product">
+        select id, `name`, price, publisher, developer, card_img, logo_img
+        from sb_product
+        limit 4
+    </select>
+    <select id="selectProductsByKw" resultType="com.pojo.Product">
+        select id,`name`,price,publisher,developer,card_img,logo_img,release_date,`description`
+        from sb_product
+        <where>
+            <if test="kw!=null and kw!=''">
+                and `name` like concat('%',#{kw},'%')
+            </if>
+        </where>
+        limit 80
+    </select>
+    <update id="updateProduct" parameterType="com.pojo.Product">
+        update sb_product
+        set `name`=#{name},
+            `description`=#{description},
+            price=#{price},
+            release_date=#{release_date},
+            developer=#{developer},
+            publisher=#{publisher}
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from sb_product where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private Integer id;
-    @NotBlank
-    @Size(min = 2, max = 8)
     private String name;
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")

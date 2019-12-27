@@ -37,6 +37,7 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleAllException(RuntimeException e){
+        e.printStackTrace();
         return e.getMessage();
     }
 
